@@ -19,12 +19,34 @@
 
 
 /* Header Logo Animation */
-header div:has(img):hover {
+header a:has(img):hover {
     animation-name: logo-hover;
     animation-duration: 1000ms;
     animation-timing-function: ease-in-out;
 }
 
+
+/* Header Links Underline Animation (commented styles are applied with tailwind) */
+/* header nav a {
+    display: block;
+    overflow: hidden;
+    position: relative;
+} */
+
+header nav a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 0.2em;
+    left: -110%;
+    width: 80%;
+
+    transition: left 250ms;
+}
+
+header nav a:hover::after {
+    left: 10%;
+}
 
 /*
 //        d8888          d8b                        888    d8b                            
