@@ -2,6 +2,16 @@ import { TEMPLATE_PATHS } from "../constants.js"
 import { TEMPLATE_DYN_DATA_ATTR_ID } from "../constants.js"
 
 
+// This function renders a list of templates, generally used for post cards and comments
+// Because fetching the template must fully complete for it to be cached, we must await a single
+// render in order for the rest of renders to use the cache
+export async function renderDynamicElementList({ sourceData, parentNode, DynElementClass }) {
+    for (const item of sourceData) {
+        await new DynElementClass(item).render(parentNode)
+    }
+}
+
+
 // This turns the HTML string into a node,
 // so we can manipulate it more easily
 export function turnTemplateIntoNode(templateString) {
