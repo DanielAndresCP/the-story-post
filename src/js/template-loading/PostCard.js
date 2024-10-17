@@ -1,8 +1,11 @@
 import { TEMPLATE_PATHS } from "../constants.js";
-import { turnTemplateIntoNode, getTemplate, getDynamicElement } from "./utils.js";
+import { getTemplate, turnTemplateIntoNode, getDynamicElement } from "./utils.js";
 
 export default class PostCard {
-    dynContent = {
+    // Static attributes are shared between all class instances
+    static htmlString
+
+    dynContentIds = {
         link: "post-card-link",
         image: "post-card-image",
         title: "post-card-title",
@@ -18,22 +21,13 @@ export default class PostCard {
     }
 
 
-    async createCardNode() {
-        const templateString = await getTemplate(TEMPLATE_PATHS.postCard)
-        /**
-         * @type {HTMLElement}
-         */
-        this.cardEl = turnTemplateIntoNode(templateString)
-    }
-
-
     /* I am not sure about how to make this content DRY */
     fillDynamicContent() {
-        getDynamicElement(this.cardEl, this.dynContent.link).attributes.href.value = this.link
-        getDynamicElement(this.cardEl, this.dynContent.image).attributes.src.value = this.imgSrc
-        getDynamicElement(this.cardEl, this.dynContent.image).attributes.alt.value = `Image for post with title "${this.title}"`
-        getDynamicElement(this.cardEl, this.dynContent.title).textContent = this.title
-        getDynamicElement(this.cardEl, this.dynContent.extract).textContent = this.extract
+        getDynamicElement(this.cardEl, this.dynContentIds.link).attributes.href.value = this.link
+        getDynamicElement(this.cardEl, this.dynContentIds.image).attributes.src.value = this.imgSrc
+        getDynamicElement(this.cardEl, this.dynContentIds.image).attributes.alt.value = `Image for post with title "${this.title}"`
+        getDynamicElement(this.cardEl, this.dynContentIds.title).textContent = this.title
+        getDynamicElement(this.cardEl, this.dynContentIds.extract).textContent = this.extract
     }
 
 
@@ -42,7 +36,12 @@ export default class PostCard {
      * @param {HTMLElement} parentNode 
      */
     async render(parentNode) {
-        await this.createCardNode()
+        // We fetch the template only if we haven't fetched the template before
+        if (!PostCard.htmlString) {
+            PostCard.htmlString = await getTemplate(TEMPLATE_PATHS.postCard)
+        }
+        
+        this.cardEl = turnTemplateIntoNode(PostCard.htmlString)
         this.fillDynamicContent()
         parentNode.appendChild(this.cardEl)
     }
