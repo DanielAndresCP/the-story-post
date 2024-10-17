@@ -26,14 +26,16 @@ header a:has(img):hover {
 }
 
 
-/* Header Links Underline Animation (commented styles are applied with tailwind) */
-/* header nav a {
+/* Underline Animation 
+(padding bottom and ::after background color must be added 
+with tailwind to the element for the underline to be visible) */
+.animated-underline {
     display: block;
     overflow: hidden;
     position: relative;
-} */
+}
 
-header nav a::after {
+.animated-underline::after {
     content: "";
     display: block;
     position: absolute;
@@ -44,7 +46,7 @@ header nav a::after {
     transition: left 250ms;
 }
 
-header nav a:hover::after {
+.animated-underline:hover::after {
     left: 10%;
 }
 
