@@ -17,7 +17,7 @@ brown-900
 
 ## Components
 *Techincally these should be components when using a framework, but I am not using any framework and making them with Vanilla JS is way too much work*
-Button: rounded-xl bg-brown-900 text-white
+Button: rounded-xl bg-brown-900 text-white | animated-underline (optional)
 
 ## Animations
 animated-underline (must be used together with padding bottom and ::after background color for the underline to be visible)
