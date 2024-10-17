@@ -14,5 +14,8 @@ brown-100
 brown-200
 brown-900
 
+## Components
+Button: rounded-xl bg-brown-900 text-white
+
 ## Animations
 animated-underline (must be used together with padding bottom and ::after background color for the underline to be visible)
