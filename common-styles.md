@@ -15,6 +15,7 @@ brown-200
 brown-900
 
 ## Components
+*Techincally these should be components when using a framework, but I am not using any framework and making them with Vanilla JS is way too much work*
 Button: rounded-xl bg-brown-900 text-white
 
 ## Animations
