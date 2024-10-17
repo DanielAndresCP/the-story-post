@@ -4,6 +4,7 @@ gap-10
 gap-6
 p-10
 p-6
+mt-4 (for separating text paragraphs)
 container py-6 px-10 (together, for a container)
 
 ## Rounded borders
