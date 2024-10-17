@@ -30,7 +30,6 @@ header a:has(img):hover {
 (padding bottom and ::after background color must be added 
 with tailwind to the element for the underline to be visible) */
 .animated-underline {
-    display: block;
     overflow: hidden;
     position: relative;
 }
