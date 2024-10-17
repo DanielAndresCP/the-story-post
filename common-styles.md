@@ -20,3 +20,4 @@ Button: rounded-xl bg-brown-900 text-white
 
 ## Animations
 animated-underline (must be used together with padding bottom and ::after background color for the underline to be visible)
+hover:shadow-xl transition-shadow (Shadow when on hover with a transition)
