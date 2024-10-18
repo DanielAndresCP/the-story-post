@@ -8,7 +8,8 @@ mt-4 (for separating text paragraphs)
 container py-6 px-10 (together, for a container)
 
 ## Rounded borders
-rounded-xl (every rounded element uses this)
+rounded-xl (every big rounded element uses this)
+rounded-full (every other rounded element uses this)
 
 ## Colors
 brown-100
