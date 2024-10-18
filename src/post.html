@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page - The Story Post</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="font-serif">
+    <main class="container bg-brown-50">
+        <section class="max-w-prose mx-auto py-6 px-10">
+            <article>
+                <img src="/img/placeholder.jpg" alt="PLACEHOLDER" class="aspect-[3/2] py-10">
+                <h1 class="inline text-4xl">Dave watched as the forest burned up on the hill. </h1>
+                <span class="text-4xl text-stone-600">(#251)</span>
+                <div class="mt-4">
+                    <p>
+                        Dave watched as the forest burned up on the hill,
+                        only a few miles from her house. The car had been
+                        hastily packed and Marta was inside trying to round
+                        up the last of the pets. Dave went through his
+                        mental list of the most important papers and documents
+                        that they couldn't leave behind. He scolded
+                        himself for not having prepared these better in
+                        advance and hoped that he had remembered everything
+                        that was needed. He continued to wait for Marta to
+                        appear with the pets, but she still was nowhere
+                        to be seen.
+                    </p>
+                </div>
+            </article>
+
+            <section class="mt-10">
+                <a href="/search?author=something" class="flex items-center gap-4">
+                    <div class="max-w-14 overflow-hidden rounded-full">
+                        <img src="/img/placeholder.jpg" alt="PLACEHOLDER">
+                    </div>
+                    <div>
+                        <h2 class="text-sm text-stone-700">Author</h2>
+                        <p class="text-2xl">User #16</p>
+                    </div>
+                </a>
+            </section>
+
+            <section class="mt-4">
+                <h2 class="inline">Tags:
+                </h2>
+                <span>
+                    <a href="/search?tag=something" class="py-1 px-2 rounded-full bg-fuchsia-200">magical</a>
+                    <a href="/search?tag=something" class="py-1 px-2 rounded-full bg-fuchsia-200">history</a>
+                    <a href="/search?tag=something" class="py-1 px-2 rounded-full bg-fuchsia-200">french</a>
+                </span>
+            </section>
+
+            <section class="mt-4 flex flex-col sm:flex-row gap-6 justify-between">
+                <div>
+                    <h2 class="text-sm">Views:</h2>
+                    <span class="text-2xl">4152</span>
+                </div>
+                <div>
+                    <h2 class="text-sm">Reactions</h2>
+                    <p class="text-2xl">Like: <span>1448</span>, Dislikes: <span>39</span></p>
+                </div>
+            </section>
+
+            <hr class="mt-4 border-brown-900 border-2">
+
+            <section class="mt-10">
+                <h2 class="text-3xl">Comments:</h2>
+                <div class="mt-6">
+                    <div class="bg-white p-6 rounded-xl">
+                        <p class="text-sm">
+                            <span>@leahw</span> |
+                            <span>Leah Gutierrez</span>
+                            says:
+                        </p>
+                        <p>These are fabulous ideas!</p>
+                        <p class="mt-2 text-sm text-stone-700"><span>7</span> people agree</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <aside class="max-w-prose mx-auto py-6 px-10">
+            <div class="mt-4 grid grid-cols-[repeat(auto-fill,minmax(min(100%,250px),1fr))] justify-items-center gap-10"
+                data-dyn-id="post-grid">
+            </div>
+        </aside>
+    </main>
+    <script type="module" src="./js/post.js"></script>
+</body>
+
+</html>
