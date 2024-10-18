@@ -9,8 +9,12 @@ In the age of social media, reading has lost the spotlight against flashy images
 
 ## Audience
 People from various age and interest groups, all united for the love for good stories, but don’t have the time to dedicate themselves to read a book. For these people, The Story Post can replace the time they spent on other social media
-Major functions of the application
+
+## Major functions of the application
 What will it do? List these in as much detail as you can.
-A home page with trending stories
-A page for searching posts, by simple search, tag search, specific user’s posts or by views or reactions
-A page for displaying the story, along with the comments other people have made about it
+
+- A home page with trending stories
+- A page for searching posts, by simple search, tag search, specific user’s posts or by views or reactions
+- A page for displaying the story, along with the comments other people have made about it
+
+Netlify url: https://the-story-post.netlify.app/
