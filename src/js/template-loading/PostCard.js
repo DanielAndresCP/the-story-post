@@ -23,11 +23,11 @@ export default class PostCard {
 
     /* I am not sure about how to make this content DRY */
     fillDynamicContent() {
-        getDynamicElement(this.cardEl, this.dynContentIds.link).attributes.href.value = this.link
-        getDynamicElement(this.cardEl, this.dynContentIds.image).attributes.src.value = this.imgSrc
-        getDynamicElement(this.cardEl, this.dynContentIds.image).attributes.alt.value = `Image for post with title "${this.title}"`
-        getDynamicElement(this.cardEl, this.dynContentIds.title).textContent = this.title
-        getDynamicElement(this.cardEl, this.dynContentIds.extract).textContent = this.extract
+        getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.link }).attributes.href.value = this.link
+        getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.image }).attributes.src.value = this.imgSrc
+        getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.image }).attributes.alt.value = `Image for post with title "${this.title}"`
+        getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.title }).textContent = this.title
+        getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.extract }).textContent = this.extract
     }
 
 
@@ -40,7 +40,7 @@ export default class PostCard {
         if (!PostCard.htmlString) {
             PostCard.htmlString = await getTemplate(TEMPLATE_PATHS.postCard)
         }
-        
+
         this.cardEl = turnTemplateIntoNode(PostCard.htmlString)
         this.fillDynamicContent()
         parentNode.appendChild(this.cardEl)

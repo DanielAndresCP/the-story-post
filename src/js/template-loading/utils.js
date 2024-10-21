@@ -23,12 +23,11 @@ export function turnTemplateIntoNode(templateString) {
 
 /**
  * 
- * @param {HTMLElement} node 
- * @param {string} dataAttrValue 
+ * @param {{node:HTMLElement,dataAttrValue:string}}}} param0 
  * @returns {HTMLElement}
  */
-export function getDynamicElement(node, dataAttrValue) {
-    const cssQuery = `[${TEMPLATE_DYN_DATA_ATTR_ID}=${dataAttrValue}]`
+export function getDynamicElement({ node = document.body, elemId }) {
+    const cssQuery = `[${TEMPLATE_DYN_DATA_ATTR_ID}=${elemId}]`
 
     // If the element itself is the one we want to match
     // query selector doesn't work, we use matches

@@ -22,10 +22,10 @@ export default class CommentCard {
 
 
     fillDynamicContent() {
-        getDynamicElement(this.commentEl, this.dynContentIds.authorUsername).textContent = this.authorUsername
-        getDynamicElement(this.commentEl, this.dynContentIds.authorDisplayName).textContent = this.authorDisplayName
-        getDynamicElement(this.commentEl, this.dynContentIds.commentContent).textContent = this.commentContent
-        getDynamicElement(this.commentEl, this.dynContentIds.commentLikes).textContent = this.commentLikes
+        getDynamicElement({ node: this.commentEl, elemId: this.dynContentIds.authorUsername }).textContent = this.authorUsername
+        getDynamicElement({ node: this.commentEl, elemId: this.dynContentIds.authorDisplayName }).textContent = this.authorDisplayName
+        getDynamicElement({ node: this.commentEl, elemId: this.dynContentIds.commentContent }).textContent = this.commentContent
+        getDynamicElement({ node: this.commentEl, elemId: this.dynContentIds.commentLikes }).textContent = this.commentLikes
     }
 
 
