@@ -1,4 +1,4 @@
-import { loadHeaderAndFooter } from "./template-loading/utils.js"
+import { loadHeaderAndFooter } from "./utils.js"
 import SinglePost from "./page-content-loading/SinglePost.js"
 
 loadHeaderAndFooter()

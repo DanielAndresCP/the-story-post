@@ -1,7 +1,7 @@
 import CommentCard from "../template-loading/Comment"
 import PostCard from "../template-loading/PostCard"
 import TagPill from "../template-loading/Tag"
-import { getDynamicElement, renderDynamicElementList } from "../template-loading/utils"
+import { getDynamicElement, renderDynamicElementList } from "../utils.js"
 
 
 export default class SinglePost {

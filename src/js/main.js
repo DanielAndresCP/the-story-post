@@ -1,4 +1,4 @@
-import { loadHeaderAndFooter, renderDynamicElementList } from "./template-loading/utils.js"
+import { loadHeaderAndFooter, renderDynamicElementList } from "./utils.js"
 import PostCard from "./template-loading/PostCard.js"
 
 loadHeaderAndFooter()

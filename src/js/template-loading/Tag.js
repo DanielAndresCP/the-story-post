@@ -1,5 +1,5 @@
 import { TEMPLATE_PATHS } from "../constants.js";
-import { getTemplate, turnTemplateIntoNode, getDynamicElement } from "./utils.js";
+import { getTemplate, turnTemplateIntoNode, getDynamicElement } from "../utils.js";
 
 export default class TagPill {
     // Static attributes are shared between all class instances

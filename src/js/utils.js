@@ -1,5 +1,4 @@
-import { TEMPLATE_PATHS } from "../constants.js"
-import { TEMPLATE_DYN_DATA_ATTR_ID } from "../constants.js"
+import { TEMPLATE_PATHS, TEMPLATE_DYN_DATA_ATTR_ID } from "./constants.js"
 
 
 // This function renders a list of templates, generally used for post cards and comments
