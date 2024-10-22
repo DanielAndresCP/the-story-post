@@ -49,6 +49,37 @@ with tailwind to the element for the underline to be visible) */
     left: 10%;
 }
 
+footer p:last-of-type {
+    cursor: pointer;
+}
+
+.chilean-flag-animated {
+    position: fixed;
+    left: calc(50vw - (150px - (0.75rem * 2)));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+
+    animation-name: viva-chile;
+    animation-duration: 4000ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+}
+
+.chilean-flag-animated {
+    font-size: 2rem;
+}
+
+.chilean-flag-animated img {
+    height: 150px;
+    width: auto;
+}
+
 /*
 //        d8888          d8b                        888    d8b                  
 //       d88888          Y8P                        888    Y8P                  
@@ -86,5 +117,15 @@ with tailwind to the element for the underline to be visible) */
 
     100% {
         transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes viva-chile {
+    0% {
+        top: 100vh;
+    }
+
+    100% {
+        top: -40vh;
     }
 }

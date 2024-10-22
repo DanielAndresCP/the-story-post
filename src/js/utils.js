@@ -1,4 +1,25 @@
-import { TEMPLATE_PATHS, TEMPLATE_DYN_DATA_ATTR_ID } from "./constants.js"
+import { TEMPLATE_PATHS, TEMPLATE_DYN_DATA_ATTR_ID, CHILEAN_FLAG_IMG_SRC } from "./constants.js"
+
+function vivaChile() {
+    const container = document.createElement("div")
+    container.classList.add("chilean-flag-animated")
+
+    const pEl = document.createElement("p")
+    pEl.textContent = "Viva Chile"
+
+    const flagImg = document.createElement("img")
+    flagImg.src = CHILEAN_FLAG_IMG_SRC
+    flagImg.alt = "Chilean Flag"
+
+    container.appendChild(pEl)
+    container.appendChild(flagImg)
+
+    document.body.appendChild(container)
+
+    setTimeout(() => {
+        container.remove()
+    }, 4000)
+}
 
 
 // This function renders a list of templates, generally used for post cards and comments
@@ -13,6 +34,11 @@ export async function renderDynamicElementList({ sourceData, parentNode, DynElem
 
 // This turns the HTML string into a node,
 // so we can manipulate it more easily
+/**
+ * 
+ * @param {string} templateString 
+ * @returns {HTMLElement}
+ */
 export function turnTemplateIntoNode(templateString) {
     const parser = new DOMParser()
     const tempDoc = parser.parseFromString(templateString, "text/html")
@@ -39,10 +65,14 @@ export function getDynamicElement({ node = document.body, elemId }) {
 
 export async function loadHeaderAndFooter() {
     const header = await getTemplate(TEMPLATE_PATHS.header)
-    const footer = await getTemplate(TEMPLATE_PATHS.footer)
+    const footerTemplate = await getTemplate(TEMPLATE_PATHS.footer)
+
+    const footerEl = turnTemplateIntoNode(footerTemplate)
+    footerEl.lastElementChild.addEventListener("click", vivaChile)
+
     const bodyElement = document.querySelector("body")
     bodyElement.insertAdjacentHTML("afterbegin", header)
-    bodyElement.insertAdjacentHTML("beforeend", footer)
+    bodyElement.appendChild(footerEl)
 }
 
 
