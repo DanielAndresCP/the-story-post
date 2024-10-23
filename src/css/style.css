@@ -26,6 +26,8 @@ header a:has(img):hover {
 }
 
 
+
+
 /* Underline Animation 
 (padding bottom and ::after background color must be added 
 with tailwind to the element for the underline to be visible) */
@@ -49,10 +51,14 @@ with tailwind to the element for the underline to be visible) */
     left: 10%;
 }
 
+/* This selects the copyright paragraph on the footer */
 footer p:last-of-type {
     cursor: pointer;
 }
 
+
+/* This are the styles for the animated chilean flag that appears
+   when clickin the copytight paragraph on the footer */
 .chilean-flag-animated {
     position: fixed;
     left: calc(50vw - (150px - (0.75rem * 2)));
