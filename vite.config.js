@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "src/index.html"),
         post: resolve(__dirname, "src/post.html"),
+        search: resolve(__dirname, "src/search.html"),
       },
     },
   },
