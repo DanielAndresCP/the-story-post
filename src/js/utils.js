@@ -93,14 +93,21 @@ export function setupMap() {
 }
 
 export async function loadHeaderAndFooter() {
-    const header = await getTemplate(TEMPLATE_PATHS.header)
-    const footerTemplate = await getTemplate(TEMPLATE_PATHS.footer)
+    const headerTemplate = await getTemplate(TEMPLATE_PATHS.header)
+    const headerEl = turnTemplateIntoNode(headerTemplate)
+    // This controls if the menu in mobile is open or closed
+    // (only affects view on mobile)
+    headerEl.querySelector("nav").addEventListener("click", (e) => {
+        e.target.classList.toggle("closed")
+    })
 
+    const footerTemplate = await getTemplate(TEMPLATE_PATHS.footer)
     const footerEl = turnTemplateIntoNode(footerTemplate)
+    // This adds the chilean flag easter egg when clicking copyright info
     footerEl.lastElementChild.addEventListener("click", vivaChile)
 
     const bodyElement = document.querySelector("body")
-    bodyElement.insertAdjacentHTML("afterbegin", header)
+    bodyElement.prepend(headerEl)
     bodyElement.appendChild(footerEl)
 }
 
