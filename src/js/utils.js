@@ -63,6 +63,33 @@ export function getDynamicElement({ node = document.body, elemId }) {
 }
 
 
+function renderMap(data, parentElement) {
+    const { latitude, longitude } = data.coords
+    const map = `<iframe
+    title="Mapa de Chillán"
+    src="https://maps.google.com/maps?q=${latitude},${longitude}&output=embed"
+    class="w-full min-h-72"></iframe>`
+    parentElement.innerHTML = map
+}
+
+
+function showMap(parentElement) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((e) => {
+            renderMap(e, parentElement)
+        })
+    } else {
+        parentElement.textContent = "You didn't allow geolocation :("
+    }
+}
+
+
+export function setupMap() {
+    const mapContainer = getDynamicElement({ elemId: "map-container" })
+    const mapButton = getDynamicElement({ elemId: "map-button" })
+    mapButton.addEventListener("click", () => { showMap(mapContainer) })
+}
+
 export async function loadHeaderAndFooter() {
     const header = await getTemplate(TEMPLATE_PATHS.header)
     const footerTemplate = await getTemplate(TEMPLATE_PATHS.footer)
