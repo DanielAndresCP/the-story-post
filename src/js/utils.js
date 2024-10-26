@@ -117,3 +117,32 @@ export async function getTemplate(url) {
     const template = await response.text()
     return template
 }
+
+
+export async function getJSON(url) {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
+}
+
+/**
+ * 
+ * @param {Array} srcList 
+ * @returns 
+ */
+export function turnPostListIntoPostCardDataList(srcList) {
+    return srcList.map((x) => {
+        return {
+            link: `/post?id=${x.id}`,
+            imgSrc: "/img/placeholder.jpg",
+            title: x.title,
+            extract: `${x.body.slice(0, 45).trim()}...`
+        }
+
+    })
+}
+
+
+export function getRandomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
