@@ -53,7 +53,11 @@ export default class PostData {
     async getPostsByUser({ userId, amount, page }) {
         const endpoint = `${POST_DATA_BASE_URL}user/${userId}`
 
-        const data = await this.getListOfPosts({ endpoint, limit: amount, skip: (amount * page) })
+        const data = await this.getListOfPosts({
+            endpoint,
+            limit: amount,
+            skip: amount && page ? (amount * page) : 0
+        })
 
         return data
     }
@@ -72,7 +76,17 @@ export default class PostData {
     }
 
 
-    
+    async getPostsByTag({ tagId, amount, page }) {
+        const endpoint = `${POST_DATA_BASE_URL}tag/${tagId}`
+
+        const data = await this.getListOfPosts({
+            endpoint,
+            limit: amount,
+            skip: amount && page ? (amount * page) : 0
+        })
+
+        return data
+    }
 
 
     async getTotalOfPosts() {
