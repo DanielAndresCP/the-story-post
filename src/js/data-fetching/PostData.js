@@ -11,9 +11,12 @@ export default class PostData {
     }
 
 
-    async getListOfPosts({ sortBy, order, limit, skip }) {
+    async getListOfPosts({ endpoint = POST_DATA_BASE_URL, sortBy, order, limit, skip, searchQuery }) {
         const searchParams = new URLSearchParams()
 
+        if (searchQuery) {
+            searchParams.append("q", searchQuery)
+        }
         if (sortBy) {
             searchParams.append("sortBy", sortBy)
         }
@@ -29,7 +32,7 @@ export default class PostData {
 
         const searchParamsString = searchParams.toString() ? `?${searchParams.toString()}` : ""
 
-        const data = await getJSON(`${POST_DATA_BASE_URL}${searchParamsString}`)
+        const data = await getJSON(`${endpoint}${searchParamsString}`)
 
         return data
     }
@@ -44,6 +47,28 @@ export default class PostData {
         const posts = this.getListOfPosts({ limit, skip })
 
         return posts
+    }
+
+
+    async getPostByUser({ userId, amount, page }) {
+        const endpoint = `${POST_DATA_BASE_URL}user/${userId}`
+
+        const data = await this.getListOfPosts({ endpoint, limit: amount, skip: (amount * page) })
+
+        return data
+    }
+
+    async searchPosts({ query, amount, page }) {
+        const endpoint = `${POST_DATA_BASE_URL}search`
+
+        const data = await this.getListOfPosts({
+            endpoint,
+            searchQuery: query,
+            limit: amount,
+            skip: amount && page ? (amount * page) : 0
+        })
+
+        return data
     }
 
 
