@@ -1,6 +1,7 @@
 import { getSearchParams, loadHeaderAndFooter, turnAPIPostDataIntoSinglePostData, turnAPICommentDataIntoCommentData, turnPostAPIDataIntoPostCardData } from "./utils.js"
 import SinglePost from "./page-content-loading/SinglePost.js"
 import PostData from "./data-fetching/PostData.js"
+import UserFavorites from "./data-fetching/UserFavorites.js"
 
 loadHeaderAndFooter()
 
@@ -27,8 +28,8 @@ if (random) {
     postData = turnAPIPostDataIntoSinglePostData(apiData)
 }
 
-
-const postLogic = new SinglePost(postData)
+const favorites = new UserFavorites()
+const postLogic = new SinglePost({ favoriteManager: favorites, ...postData })
 postLogic.renderMainContent()
 
 

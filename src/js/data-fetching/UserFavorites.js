@@ -3,10 +3,10 @@ import { getLocalStorage, setLocalStorage } from "../utils";
 
 export default class UserFavorites {
     postKey = "story-post-favorite-posts"
-    userKey = "story-post-favorite-users"
+    authorKey = "story-post-favorite-users"
     tagKey = "story-post-favorite-tags"
     posts = []
-    users = []
+    authors = []
     tags = []
 
 
@@ -16,16 +16,17 @@ export default class UserFavorites {
 
     getUserFavorites() {
         this.posts = getLocalStorage(this.postKey) ? getLocalStorage(this.postKey) : []
-        setLocalStorage(this.postKey, this.posts)
-
-        this.users = getLocalStorage(this.userKey) ? getLocalStorage(this.userKey) : []
-        setLocalStorage(this.userKey, this.users)
-
+        this.authors = getLocalStorage(this.authorKey) ? getLocalStorage(this.authorKey) : []
         this.tags = getLocalStorage(this.tagKey) ? getLocalStorage(this.tagKey) : []
+        this.updateUserFavorites()
+
+        return { posts: this.posts, users: this.authors, tags: this.tags }
+    }
+
+    updateUserFavorites() {
+        setLocalStorage(this.postKey, this.posts)
+        setLocalStorage(this.authorKey, this.authors)
         setLocalStorage(this.tagKey, this.tags)
-
-
-        return { posts: this.posts, users: this.users, tags: this.tags }
     }
 
     // Posts
@@ -33,11 +34,13 @@ export default class UserFavorites {
         // If the post is already in favorites, we dont add it
         if (this.posts.includes(postId)) return
 
-        setLocalStorage(this.postKey, [...this.posts, postId])
+        this.posts = [...this.posts, postId]
+        this.updateUserFavorites()
     }
 
     removeFavoritePost(postId) {
-        setLocalStorage(this.postKey, this.posts.filter((x) => x !== postId))
+        this.posts = this.posts.filter((x) => x !== postId)
+        this.updateUserFavorites()
     }
 
     checkPostInFavorites(postId) {
@@ -45,31 +48,35 @@ export default class UserFavorites {
     }
 
     // Users
-    addFavoriteUser(userId) {
-        // If the post is already in favorites, we dont add it
-        if (this.users.includes(userId)) return
+    addFavoriteAuthor(authorId) {
+        // If the author is already in favorites, we dont add it
+        if (this.authors.includes(authorId)) { return }
 
-        setLocalStorage(this.userKey, [...this.users, userId])
+        this.authors = [...this.authors, authorId]
+        this.updateUserFavorites()
     }
 
-    removeFavoriteUser(userId) {
-        setLocalStorage(this.userKey, this.users.filter((x) => x !== userId))
+    removeFavoriteAuthor(authorId) {
+        this.authors = this.authors.filter((x) => x !== authorId)
+        this.updateUserFavorites()
     }
 
-    checkUserInFavorites(userId) {
-        return this.users.some((x) => x === userId)
+    checkAuthorInFavorites(authorId) {
+        return this.authors.some((x) => x === authorId)
     }
 
     // Tags
     addFavoriteTag(tagId) {
-        // If the post is already in favorites, we dont add it
+        // If the tag is already in favorites, we dont add it
         if (this.tags.includes(tagId)) return
 
-        setLocalStorage(this.tags, [...this.tags, tagId])
+        this.tags = [...this.tags, tagId]
+        this.updateUserFavorites()
     }
 
     removeFavoriteTag(tagId) {
-        setLocalStorage(this.tagKey, this.tagsusers.filter((x) => x !== tagId))
+        this.tags = this.tags.filter((x) => x !== tagId)
+        this.updateUserFavorites()
     }
 
     checkTagInFavorites(tagId) {

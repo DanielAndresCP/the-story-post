@@ -5,6 +5,7 @@ export const TEMPLATE_PATHS = {
     comment: "/templates/comment.html",
     tag: "/templates/tag.html",
     authorCard: "/templates/author-card.html",
+    favoriteActionBtn: "/templates/favorite-action-btn.html"
 }
 
 export const TEMPLATE_DYN_DATA_ATTR_ID = "data-dyn-id"

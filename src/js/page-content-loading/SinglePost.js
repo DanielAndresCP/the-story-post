@@ -3,6 +3,8 @@ import PostCard from "../template-loading/PostCard"
 import TagPill from "../template-loading/Tag"
 import AuthorCard from "../template-loading/AuthorCard.js"
 import { getDynamicElement, renderDynamicElementList, generateTagPillData } from "../utils.js"
+import UserFavorites from "../data-fetching/UserFavorites.js"
+import FavoriteActionBtn from "../template-loading/FavoriteActionBtn.js"
 
 
 export default class SinglePost {
@@ -17,7 +19,8 @@ export default class SinglePost {
         likes: "post-likes",
         dislikes: "post-dislikes",
         commentListContainer: "post-comment-list",
-        relatedPostsContainer: "post-related-posts-grid"
+        relatedPostsContainer: "post-related-posts-grid",
+        favoriteActions: "favorite-actions"
     }
 
     constructor({
@@ -27,11 +30,12 @@ export default class SinglePost {
         content,
         authorCardLink,
         authorCardImg,
-        authorCardName,
+        authorId,
         views,
         likes,
         dislikes,
-        tags
+        tags,
+        favoriteManager
     }) {
         this.img = img
         this.title = title
@@ -39,11 +43,15 @@ export default class SinglePost {
         this.content = content
         this.authorCardLink = authorCardLink
         this.authorCardImg = authorCardImg
-        this.authorCardName = authorCardName
+        this.authorId = authorId
         this.views = Number(views)
         this.likes = Number(likes)
         this.dislikes = Number(dislikes)
         this.tags = tags
+        // Te favorite manager comes from the main script level because if there's more than one favorite manager it explodes
+        // Technically i could make it not have an internal state and use the localStorage as the single source of truth,
+        // but i dont have time :(
+        this.favoriteManager = favoriteManager
     }
 
     renderMainContent() {
@@ -54,7 +62,7 @@ export default class SinglePost {
         getDynamicElement({ elemId: this.dynContentIds.content }).textContent = this.content
 
         const authorCardContainer = getDynamicElement({ elemId: this.dynContentIds.authorCardContainer })
-        const authorCardLogic = new AuthorCard({ authorLink: this.authorCardLink, authorImgSrc: this.authorCardImg, authorName: this.authorCardName })
+        const authorCardLogic = new AuthorCard({ authorLink: this.authorCardLink, authorImgSrc: this.authorCardImg, authorName: `Author #${this.authorId}` })
         authorCardLogic.render(authorCardContainer)
 
         getDynamicElement({ elemId: this.dynContentIds.views }).textContent = this.views
@@ -62,6 +70,36 @@ export default class SinglePost {
         getDynamicElement({ elemId: this.dynContentIds.dislikes }).textContent = this.dislikes
 
         this.renderTags(this.tags.map(generateTagPillData))
+
+        this.renderFavoriteActionsBtns()
+    }
+
+    renderFavoriteActionsBtns() {
+        const post = {
+            id: this.id,
+            type: "post",
+            favoriteManager: this.favoriteManager
+        }
+
+        const author = {
+            id: this.authorId,
+            type: "author",
+            favoriteManager: this.favoriteManager
+        }
+
+        const tags = this.tags.map((x) => {
+            return {
+                id: x,
+                type: "tag",
+                favoriteManager: this.favoriteManager
+            }
+        })
+
+        renderDynamicElementList({
+            sourceData: [post, author, ...tags],
+            parentNode: getDynamicElement({ elemId: this.dynContentIds.favoriteActions }),
+            DynElementClass: FavoriteActionBtn
+        })
     }
 
     renderTags(tags) {
@@ -80,7 +118,7 @@ export default class SinglePost {
                 parentNode: containerEl,
                 DynElementClass: CommentCard
             })
-        } else { 
+        } else {
             containerEl.textContent = "(No comments found)"
         }
     }
