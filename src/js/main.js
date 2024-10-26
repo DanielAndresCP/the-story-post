@@ -1,46 +1,20 @@
-import { loadHeaderAndFooter, renderDynamicElementList, setupMap } from "./utils.js"
+import { loadHeaderAndFooter, renderDynamicElementList, setupMap, turnPostListIntoPostCardDataList } from "./utils.js"
 import PostCard from "./template-loading/PostCard.js"
+import PostData from "./data-fetching/PostData.js"
 
 loadHeaderAndFooter()
 
 setupMap()
 
-const posts = [
-    {
-        imgSrc: "/img/placeholder.jpg",
-        title: "This is a title",
-        extract: "If only i knew how to read binary"
-    },
-    {
-        imgSrc: "/img/placeholder.jpg",
-        title: "This is a title",
-        extract: "If only i knew how to read binary"
-    },
-    {
-        imgSrc: "/img/placeholder.jpg",
-        title: "This is a title",
-        extract: "If only i knew how to read binary"
-    },
-    {
-        imgSrc: "/img/placeholder.jpg",
-        title: "This is a title",
-        extract: "If only i knew how to read binary"
-    },
-    {
-        imgSrc: "/img/placeholder.jpg",
-        title: "This is a title",
-        extract: "If only i knew how to read binary"
-    },
-    {
-        imgSrc: "/img/placeholder.jpg",
-        title: "This is a title",
-        extract: "If only i knew how to read binary"
-    }
-]
 
-renderDynamicElementList(
-    {
-        sourceData: posts,
-        parentNode: document.querySelector('[data-dyn-id="post-grid"]'),
-        DynElementClass: PostCard
-    })
+const postDataSrc = new PostData()
+
+const data = await postDataSrc.getRandomPosts(8)
+
+const posts = turnPostListIntoPostCardDataList(data.posts)
+
+renderDynamicElementList({
+    sourceData: posts,
+    parentNode: document.querySelector('[data-dyn-id="post-grid"]'),
+    DynElementClass: PostCard
+})
