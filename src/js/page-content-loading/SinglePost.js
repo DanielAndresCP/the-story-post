@@ -73,11 +73,16 @@ export default class SinglePost {
     }
 
     renderComments(comments) {
-        renderDynamicElementList({
-            sourceData: comments,
-            parentNode: getDynamicElement({ elemId: this.dynContentIds.commentListContainer }),
-            DynElementClass: CommentCard
-        })
+        const containerEl = getDynamicElement({ elemId: this.dynContentIds.commentListContainer })
+        if (comments.length !== 0) {
+            renderDynamicElementList({
+                sourceData: comments,
+                parentNode: containerEl,
+                DynElementClass: CommentCard
+            })
+        } else { 
+            containerEl.textContent = "(No comments found)"
+        }
     }
 
 
