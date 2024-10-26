@@ -142,6 +142,21 @@ export function turnPostListIntoPostCardDataList(srcList) {
     })
 }
 
+export function turnAPIPostDataIntoSinglePostData(srcData) {
+    const { title, id, body, userId, views, reactions } = srcData
+    return {
+        img: "/img/placeholder.jpg",
+        title,
+        id,
+        content: body,
+        authorCardLink: `/search?author=${userId}`,
+        authorCardImg: "/img/placeholder.jpg",
+        authorCardName: `User #${userId}`,
+        views,
+        likes: reactions.likes,
+        dislikes: reactions.dislikes
+    }
+}
 
 export function getRandomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
