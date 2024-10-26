@@ -50,9 +50,9 @@ export default class SinglePost {
         getDynamicElement({ elemId: this.dynContentIds.title }).textContent = this.title
         getDynamicElement({ elemId: this.dynContentIds.id }).textContent = `(#${this.id})`
         getDynamicElement({ elemId: this.dynContentIds.content }).textContent = this.content
-        
+
         const authorCardContainer = getDynamicElement({ elemId: this.dynContentIds.authorCardContainer })
-        const authorCardLogic = new AuthorCard({link: this.authorCardLink, imgSrc: this.authorCardImg, name: this.authorCardName})
+        const authorCardLogic = new AuthorCard({ authorLink: this.authorCardLink, authorImgSrc: this.authorCardImg, authorName: this.authorCardName })
         authorCardLogic.render(authorCardContainer)
 
         getDynamicElement({ elemId: this.dynContentIds.views }).textContent = this.views

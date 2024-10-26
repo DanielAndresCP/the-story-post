@@ -12,18 +12,18 @@ export default class AuthorCard {
     }
 
 
-    constructor({ link, imgSrc, name }) {
-        this.link = link
-        this.imgSrc = imgSrc
-        this.name = name
+    constructor({ authorLink, authorImgSrc, authorName }) {
+        this.authorLink = authorLink
+        this.authorImgSrc = authorImgSrc
+        this.authorName = authorName
     }
 
 
     fillDynamicContent() {
-        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.link }).attributes.href.value = this.link
-        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.imgSrc }).attributes.src.value = this.imgSrc
-        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.imgSrc }).attributes.alt.value = `Profile Photo for ${this.name}`
-        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.name }).textContent = this.name
+        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.link }).attributes.href.value = this.authorLink
+        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.imgSrc }).attributes.src.value = this.authorImgSrc
+        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.imgSrc }).attributes.alt.value = `Profile Photo for ${this.authorName}`
+        getDynamicElement({ node: this.authorCardEl, elemId: this.dynContentIds.name }).textContent = this.authorName
     }
 
 
