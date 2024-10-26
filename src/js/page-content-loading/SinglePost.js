@@ -2,7 +2,7 @@ import CommentCard from "../template-loading/Comment"
 import PostCard from "../template-loading/PostCard"
 import TagPill from "../template-loading/Tag"
 import AuthorCard from "../template-loading/AuthorCard.js"
-import { getDynamicElement, renderDynamicElementList } from "../utils.js"
+import { getDynamicElement, renderDynamicElementList, generateTagPillData } from "../utils.js"
 
 
 export default class SinglePost {
@@ -30,7 +30,8 @@ export default class SinglePost {
         authorCardName,
         views,
         likes,
-        dislikes
+        dislikes,
+        tags
     }) {
         this.img = img
         this.title = title
@@ -42,6 +43,7 @@ export default class SinglePost {
         this.views = Number(views)
         this.likes = Number(likes)
         this.dislikes = Number(dislikes)
+        this.tags = tags
     }
 
     renderMainContent() {
@@ -58,6 +60,8 @@ export default class SinglePost {
         getDynamicElement({ elemId: this.dynContentIds.views }).textContent = this.views
         getDynamicElement({ elemId: this.dynContentIds.likes }).textContent = this.likes
         getDynamicElement({ elemId: this.dynContentIds.dislikes }).textContent = this.dislikes
+
+        this.renderTags(this.tags.map(generateTagPillData))
     }
 
     renderTags(tags) {

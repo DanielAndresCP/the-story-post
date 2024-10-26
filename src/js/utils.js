@@ -143,7 +143,7 @@ export function turnPostListIntoPostCardDataList(srcList) {
 }
 
 export function turnAPIPostDataIntoSinglePostData(srcData) {
-    const { title, id, body, userId, views, reactions } = srcData
+    const { title, id, body, userId, views, reactions, tags } = srcData
     return {
         img: "/img/placeholder.jpg",
         title,
@@ -154,8 +154,14 @@ export function turnAPIPostDataIntoSinglePostData(srcData) {
         authorCardName: `User #${userId}`,
         views,
         likes: reactions.likes,
-        dislikes: reactions.dislikes
+        dislikes: reactions.dislikes,
+        tags
     }
+}
+
+
+export function generateTagPillData(tagSlug) {
+    return { tagName: tagSlug, tagLink: `/search?tag="${tagSlug}"` }
 }
 
 export function getRandomNumberInRange(min, max) {
