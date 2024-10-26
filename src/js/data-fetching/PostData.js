@@ -97,7 +97,7 @@ export default class PostData {
 
 
     async getPostComments({ postId }) {
-        const endpoint = `${POST_DATA_BASE_URL}/${postId}/comments`
+        const endpoint = `${POST_DATA_BASE_URL}${postId}/comments`
         const data = await getJSON(endpoint)
         return data
     }
