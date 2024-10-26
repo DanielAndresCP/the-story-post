@@ -89,6 +89,13 @@ export default class PostData {
     }
 
 
+    async getAllTags() {
+        const endpoint = `${POST_DATA_BASE_URL}tags`
+        const data = await getJSON(endpoint)
+        return data
+    }
+
+
     async getTotalOfPosts() {
         const data = await this.getListOfPosts({ limit: 1 })
         return data.total
