@@ -152,6 +152,14 @@ export function turnAPIPostDataIntoSinglePostData(srcData) {
     }
 }
 
+export function turnAPICommentDataIntoCommentData(srcData) {
+    return {
+        authorUsername: srcData.user.username,
+        authorDisplayName: srcData.user.fullName,
+        commentContent: srcData.body,
+        commentLikes: srcData.likes
+    }
+}
 
 export function generateTagPillData(tagSlug) {
     return { tagName: tagSlug, tagLink: `/search?tag="${tagSlug}"` }
