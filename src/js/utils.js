@@ -142,7 +142,7 @@ export function turnAPIPostDataIntoSinglePostData(srcData) {
         title,
         id,
         content: body,
-        authorCardLink: `/search?author=${userId}`,
+        authorCardLink: `/search?user=${userId}`,
         authorCardImg: "/img/placeholder.jpg",
         authorCardName: `User #${userId}`,
         views,
