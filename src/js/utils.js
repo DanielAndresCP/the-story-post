@@ -162,7 +162,7 @@ export function turnAPICommentDataIntoCommentData(srcData) {
 }
 
 export function generateTagPillData(tagSlug) {
-    return { tagName: tagSlug, tagLink: `/search?tag="${tagSlug}"` }
+    return { tagName: tagSlug, tagLink: `/search?tag=${tagSlug}` }
 }
 
 export function getRandomNumberInRange(min, max) {
