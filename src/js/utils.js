@@ -172,3 +172,11 @@ export function getRandomNumberInRange(min, max) {
 export function getSearchParams() {
     return new URLSearchParams(window.location.href.split("?")[1])
 }
+
+export function getLocalStorage(property) {
+    return JSON.parse(window.localStorage.getItem(property))
+}
+
+export function setLocalStorage(property, value) {
+    return window.localStorage.setItem(property, JSON.stringify(value))
+}
