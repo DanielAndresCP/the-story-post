@@ -1,5 +1,4 @@
 import { TEMPLATE_PATHS } from "../constants.js";
-import UserFavorites from "../data-fetching/UserFavorites.js";
 import { getTemplate, turnTemplateIntoNode } from "../utils.js";
 
 

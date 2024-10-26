@@ -3,7 +3,6 @@ import PostCard from "../template-loading/PostCard"
 import TagPill from "../template-loading/Tag"
 import AuthorCard from "../template-loading/AuthorCard.js"
 import { getDynamicElement, renderDynamicElementList, generateTagPillData } from "../utils.js"
-import UserFavorites from "../data-fetching/UserFavorites.js"
 import FavoriteActionBtn from "../template-loading/FavoriteActionBtn.js"
 
 
