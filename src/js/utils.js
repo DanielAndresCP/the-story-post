@@ -125,21 +125,14 @@ export async function getJSON(url) {
     return data
 }
 
-/**
- * 
- * @param {Array} srcList 
- * @returns 
- */
-export function turnPostListIntoPostCardDataList(srcList) {
-    return srcList.map((x) => {
-        return {
-            link: `/post?id=${x.id}`,
-            imgSrc: "/img/placeholder.jpg",
-            title: x.title,
-            extract: `${x.body.slice(0, 45).trim()}...`
-        }
 
-    })
+export function turnPostAPIDataIntoPostCardData(srcData) {
+    return {
+        link: `/post?id=${srcData.id}`,
+        imgSrc: "/img/placeholder.jpg",
+        title: srcData.title,
+        extract: `${srcData.body.slice(0, 45).trim()}...`
+    }
 }
 
 export function turnAPIPostDataIntoSinglePostData(srcData) {
