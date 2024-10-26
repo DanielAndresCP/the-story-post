@@ -1,6 +1,7 @@
 import CommentCard from "../template-loading/Comment"
 import PostCard from "../template-loading/PostCard"
 import TagPill from "../template-loading/Tag"
+import AuthorCard from "../template-loading/AuthorCard.js"
 import { getDynamicElement, renderDynamicElementList } from "../utils.js"
 
 
@@ -10,9 +11,7 @@ export default class SinglePost {
         title: "post-title",
         id: "post-id-display",
         content: "post-content",
-        authorCardLink: "post-author-link",
-        authorCardImg: "post-author-img",
-        authorCardName: "post-author-name",
+        authorCardContainer: "post-author-container",
         tagListContainer: "post-tag-list",
         views: "post-views",
         likes: "post-likes",
@@ -51,10 +50,11 @@ export default class SinglePost {
         getDynamicElement({ elemId: this.dynContentIds.title }).textContent = this.title
         getDynamicElement({ elemId: this.dynContentIds.id }).textContent = `(#${this.id})`
         getDynamicElement({ elemId: this.dynContentIds.content }).textContent = this.content
-        getDynamicElement({ elemId: this.dynContentIds.authorCardLink }).attributes.href.value = this.authorCardLink
-        getDynamicElement({ elemId: this.dynContentIds.authorCardImg }).attributes.src.value = this.authorCardImg
-        getDynamicElement({ elemId: this.dynContentIds.authorCardImg }).attributes.alt.value = `Profile Picture of ${this.authorCardName}`
-        getDynamicElement({ elemId: this.dynContentIds.authorCardName }).textContent = this.authorCardName
+
+        const authorCardContainer = getDynamicElement({ elemId: this.dynContentIds.authorCardContainer })
+        const authorCardLogic = new AuthorCard({ authorLink: this.authorCardLink, authorImgSrc: this.authorCardImg, authorName: this.authorCardName })
+        authorCardLogic.render(authorCardContainer)
+
         getDynamicElement({ elemId: this.dynContentIds.views }).textContent = this.views
         getDynamicElement({ elemId: this.dynContentIds.likes }).textContent = this.likes
         getDynamicElement({ elemId: this.dynContentIds.dislikes }).textContent = this.dislikes
