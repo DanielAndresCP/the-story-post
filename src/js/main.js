@@ -1,4 +1,4 @@
-import { loadHeaderAndFooter, renderDynamicElementList, setupMap, turnPostListIntoPostCardDataList } from "./utils.js"
+import { getDynamicElement, loadHeaderAndFooter, renderDynamicElementList, setupMap, turnPostListIntoPostCardDataList } from "./utils.js"
 import PostCard from "./template-loading/PostCard.js"
 import PostData from "./data-fetching/PostData.js"
 
@@ -15,6 +15,6 @@ const posts = turnPostListIntoPostCardDataList(data.posts)
 
 renderDynamicElementList({
     sourceData: posts,
-    parentNode: document.querySelector('[data-dyn-id="post-grid"]'),
+    parentNode: getDynamicElement({ elemId: "post-grid" }),
     DynElementClass: PostCard
 })
