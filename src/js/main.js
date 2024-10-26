@@ -4,17 +4,18 @@ import PostData from "./data-fetching/PostData.js"
 
 loadHeaderAndFooter()
 
-setupMap()
+setupMap();
 
+(async () => {
+    const postDataSrc = new PostData()
 
-const postDataSrc = new PostData()
+    const data = await postDataSrc.getRandomPosts(8)
 
-const data = await postDataSrc.getRandomPosts(8)
+    const posts = data.posts.map(turnPostAPIDataIntoPostCardData)
 
-const posts = data.posts.map(turnPostAPIDataIntoPostCardData)
-
-renderDynamicElementList({
-    sourceData: posts,
-    parentNode: getDynamicElement({ elemId: "post-grid" }),
-    DynElementClass: PostCard
-})
+    renderDynamicElementList({
+        sourceData: posts,
+        parentNode: getDynamicElement({ elemId: "post-grid" }),
+        DynElementClass: PostCard
+    })
+})()
