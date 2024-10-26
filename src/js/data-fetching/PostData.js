@@ -23,7 +23,7 @@ export default class PostData {
         if (order) {
             searchParams.append("order", order)
         }
-        if (limit) {
+        if (limit || limit === 0) {
             searchParams.append("limit", limit)
         }
         if (skip) {
