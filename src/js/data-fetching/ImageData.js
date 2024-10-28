@@ -20,7 +20,9 @@ export default class ImageData {
         const maxLength = string.length
 
         // This gets the first and last quarter of the string, with a maximun lenght of 6 chars each
-        const sectionLength = Math.floor(maxLength / 4) < 6 ? Math.floor(maxLength / 4) : 6
+        // and 1 char minimun each
+        const quarterOfLength = Math.floor(maxLength / 4) > 1 ? Math.floor(maxLength / 4) : 1
+        const sectionLength = quarterOfLength < 6 ? quarterOfLength : 6
         const firstSectionUpperBound = sectionLength
         const secondSectionLowerBound = maxLength - firstSectionUpperBound
 
