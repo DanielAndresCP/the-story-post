@@ -17,6 +17,25 @@ export default class ImageData {
      * @returns {string}
      */
     getSeedFromString(string) {
-        return string.slice(0, 8).toLocaleLowerCase().trim().replaceAll(" ", "-")
+        const maxLength = string.length
+
+        // This gets the first and last quarter of the string, with a maximun lenght of 6 chars each
+        const sectionLength = Math.floor(maxLength / 4) < 6 ? Math.floor(maxLength / 4) : 6
+        const firstSectionUpperBound = sectionLength
+        const secondSectionLowerBound = maxLength - firstSectionUpperBound
+
+        const firstSection = this.processStringForSeed(string.slice(0, firstSectionUpperBound))
+        const secondSection = this.processStringForSeed(string.slice(secondSectionLowerBound, maxLength))
+
+        return `${firstSection}${secondSection}`
+    }
+
+    /**
+     * 
+     * @param {string} string 
+     * @returns {string}
+     */
+    processStringForSeed(string) {
+        return string.toLocaleLowerCase().trim().replaceAll(" ", "-")
     }
 }
