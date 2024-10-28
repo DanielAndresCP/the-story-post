@@ -1,4 +1,4 @@
-import { TEMPLATE_PATHS, TEMPLATE_DYN_DATA_ATTR_ID, CHILEAN_FLAG_IMG_SRC } from "./constants.js"
+import { TEMPLATE_PATHS, TEMPLATE_DYN_DATA_ATTR_ID, CHILEAN_FLAG_IMG_SRC, PLACEHOLDER_IMG_PATH } from "./constants.js"
 
 function vivaChile() {
     const container = document.createElement("div")
@@ -129,7 +129,7 @@ export async function getJSON(url) {
 export function turnPostAPIDataIntoPostCardData(srcData) {
     return {
         link: `/post?id=${srcData.id}`,
-        imgSrc: "/img/placeholder.jpg",
+        imgSrc: PLACEHOLDER_IMG_PATH,
         title: srcData.title,
         extract: `${srcData.body.slice(0, 45).trim()}...`
     }
@@ -138,12 +138,12 @@ export function turnPostAPIDataIntoPostCardData(srcData) {
 export function turnAPIPostDataIntoSinglePostData(srcData) {
     const { title, id, body, userId, views, reactions, tags } = srcData
     return {
-        img: "/img/placeholder.jpg",
+        img: PLACEHOLDER_IMG_PATH,
         title,
         id,
         content: body,
         authorCardLink: `/search?user=${userId}`,
-        authorCardImg: "/img/placeholder.jpg",
+        authorCardImg: PLACEHOLDER_IMG_PATH,
         authorId: userId,
         views,
         likes: reactions.likes,

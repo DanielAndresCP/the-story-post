@@ -13,3 +13,5 @@ export const TEMPLATE_DYN_DATA_ATTR_ID = "data-dyn-id"
 export const CHILEAN_FLAG_IMG_SRC = "/img/chile-flag.svg"
 
 export const POST_DATA_BASE_URL = "https://dummyjson.com/posts/"
+
+export const PLACEHOLDER_IMG_PATH = "/img/placeholder.jpg"

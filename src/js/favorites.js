@@ -4,6 +4,7 @@ import AuthorCard from "./template-loading/AuthorCard"
 import TagPill from "./template-loading/Tag";
 import UserFavorites from "./data-fetching/UserFavorites";
 import PostData from "./data-fetching/PostData";
+import { PLACEHOLDER_IMG_PATH } from "./constants";
 
 loadHeaderAndFooter();
 
@@ -46,7 +47,7 @@ loadHeaderAndFooter();
 
             const { userId } = postsByAuthor.posts[0]
 
-            const authorData = { authorLink: `/search?user=${userId}`, authorImgSrc: "/img/placeholder.jpg", authorName: `User #${userId}` }
+            const authorData = { authorLink: `/search?user=${userId}`, authorImgSrc: PLACEHOLDER_IMG_PATH, authorName: `User #${userId}` }
             authors.push(authorData)
         }
 
