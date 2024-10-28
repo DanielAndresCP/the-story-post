@@ -4,6 +4,8 @@ import TagPill from "../template-loading/Tag"
 import AuthorCard from "../template-loading/AuthorCard.js"
 import { getDynamicElement, renderDynamicElementList, generateTagPillData } from "../utils.js"
 import FavoriteActionBtn from "../template-loading/FavoriteActionBtn.js"
+import { PLACEHOLDER_IMG_PATH } from "../constants.js"
+import ImageData from "../data-fetching/ImageData.js"
 
 
 export default class SinglePost {
@@ -36,7 +38,7 @@ export default class SinglePost {
         tags,
         favoriteManager
     }) {
-        this.img = img
+        this.img = img !== PLACEHOLDER_IMG_PATH ? img : undefined
         this.title = title
         this.id = id
         this.content = content
@@ -54,7 +56,20 @@ export default class SinglePost {
     }
 
     renderMainContent() {
-        getDynamicElement({ elemId: this.dynContentIds.img }).attributes.src.value = this.img
+        const imgEl = getDynamicElement({ elemId: this.dynContentIds.img })
+
+        if (this.img) {
+            imgEl.attributes.src.value = this.img
+        } else {
+            const imageLogic = new ImageData()
+            const seed = imageLogic.getSeedFromString(this.title)
+            const width = 560
+            const height = Math.floor((width / 3) * 2)
+
+            imageLogic.getImageURL({ seed, width, height }).then((x) => { imgEl.attributes.src.value = x })
+        }
+        
+
         getDynamicElement({ elemId: this.dynContentIds.img }).attributes.alt.value = `Cover Image for "${this.title}" Post`
         getDynamicElement({ elemId: this.dynContentIds.title }).textContent = this.title
         getDynamicElement({ elemId: this.dynContentIds.id }).textContent = `(#${this.id})`
