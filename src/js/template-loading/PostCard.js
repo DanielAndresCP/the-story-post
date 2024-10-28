@@ -1,4 +1,5 @@
-import { TEMPLATE_PATHS } from "../constants.js";
+import { PLACEHOLDER_IMG_PATH, TEMPLATE_PATHS } from "../constants.js";
+import ImageData from "../data-fetching/ImageData.js";
 import { getTemplate, turnTemplateIntoNode, getDynamicElement } from "../utils.js";
 
 export default class PostCard {
@@ -15,7 +16,7 @@ export default class PostCard {
 
     constructor({ link, imgSrc, title, extract }) {
         this.link = link
-        this.imgSrc = imgSrc
+        this.imgSrc = imgSrc !== PLACEHOLDER_IMG_PATH ? imgSrc : undefined
         this.title = title
         this.extract = extract
     }
@@ -24,7 +25,16 @@ export default class PostCard {
     /* I am not sure about how to make this content DRY */
     fillDynamicContent() {
         getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.link }).attributes.href.value = this.link
-        getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.image }).attributes.src.value = this.imgSrc
+
+        const imageEl = getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.image })
+        if (this.imgSrc) {
+            imageEl.attributes.src.value = this.imgSrc
+        } else {
+            const imageLogic = new ImageData()
+            const seed = imageLogic.getSeedFromString(this.title)
+            imageLogic.getImageURL({ seed, width: 260 }).then((x) => { imageEl.attributes.src.value = x })
+        }
+
         getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.image }).attributes.alt.value = `Image for post with title "${this.title}"`
         getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.title }).textContent = this.title
         getDynamicElement({ node: this.cardEl, elemId: this.dynContentIds.extract }).textContent = this.extract
