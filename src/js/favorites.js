@@ -47,7 +47,7 @@ loadHeaderAndFooter();
 
             const { userId } = postsByAuthor.posts[0]
 
-            const authorData = { authorLink: `/search?user=${userId}`, authorImgSrc: PLACEHOLDER_IMG_PATH, authorName: `User #${userId}` }
+            const authorData = { authorLink: `/search?user=${userId}`, authorImgSrc: PLACEHOLDER_IMG_PATH, authorName: `Author #${userId}` }
             authors.push(authorData)
         }
 

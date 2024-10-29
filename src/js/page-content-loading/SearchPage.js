@@ -56,7 +56,7 @@ export default class SearchPage {
         const queryDisplayStrings = [
             this.query ? `query: ${this.query}` : "",
             this.searchedTag ? `tag: ${this.searchedTag}` : "",
-            this.searchedUser ? `user: ${this.searchedUser}` : ""
+            this.searchedUser ? `author: ${this.searchedUser}` : ""
         ]
         const searchQueryDisplayText = `(searched for: ${queryDisplayStrings.filter((x) => x !== "").join(", ")})`
         getDynamicElement({ elemId: this.dynContentIds.searchQueryDisplay }).textContent = searchQueryDisplayText
