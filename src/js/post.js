@@ -18,14 +18,19 @@ loadHeaderAndFooter();
 
     // We set post data, depending if a random or specific post was requested
     let postData = null
-    if (random) {
-        const apiData = await postAPIDataLogic.getRandomPosts(1)
+    try {
+        if (random) {
+            const apiData = await postAPIDataLogic.getRandomPosts(1)
 
-        postData = turnAPIPostDataIntoSinglePostData(apiData.posts[0])
-    } else {
-        const apiData = await postAPIDataLogic.getPost(postId)
+            postData = turnAPIPostDataIntoSinglePostData(apiData.posts[0])
+        } else {
+            const apiData = await postAPIDataLogic.getPost(postId)
 
-        postData = turnAPIPostDataIntoSinglePostData(apiData)
+            postData = turnAPIPostDataIntoSinglePostData(apiData)
+        }
+    } catch (e) {
+        document.querySelector("main :first-child").prepend("The post you tried to access is not available or does not exist")
+        return
     }
 
     const favorites = new UserFavorites()

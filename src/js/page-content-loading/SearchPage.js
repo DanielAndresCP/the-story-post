@@ -29,6 +29,7 @@ export default class SearchPage {
         // TODO ADD THIS TO SKILL ASSESMENT
         // If we aren't searching anything we return
         if (!this.query && (!this.searchedTag) && !this.searchedUser) {
+            this.loadTagsinSelect()
             return
         }
 
@@ -65,10 +66,17 @@ export default class SearchPage {
         // We render the search results
         const containerEl = getDynamicElement({ elemId: this.dynContentIds.searchResults })
         containerEl.innerHTML = ""
+        
+        if (this.searchResults === null) {
+            containerEl.textContent = "An error occured and no posts were obtained. This commonly happens when you search for an author that does not exit"
+            return
+        }
+
         if (this.searchResults.length === 0) {
             containerEl.textContent = "No results for this search"
             return
         }
+        
         renderDynamicElementList({
             sourceData: this.searchResults.map(turnPostAPIDataIntoPostCardData),
             parentNode: containerEl,
@@ -119,16 +127,20 @@ export default class SearchPage {
     }
 
     async searchByFilter(filter) {
-        switch (filter.name) {
-            case "query":
-                this.searchResults = (await this.apiData.searchPosts({ query: filter.value, amount: 0 })).posts
-                break;
-            case "searchedTag":
-                this.searchResults = (await this.apiData.getPostsByTag({ tagId: filter.value, amount: 0 })).posts
-                break;
-            case "searchedUser":
-                this.searchResults = (await this.apiData.getPostsByUser({ userId: filter.value, amount: 0 })).posts
-                break;
+        try {
+            switch (filter.name) {
+                case "query":
+                    this.searchResults = (await this.apiData.searchPosts({ query: filter.value, amount: 0 })).posts
+                    break;
+                case "searchedTag":
+                    this.searchResults = (await this.apiData.getPostsByTag({ tagId: filter.value, amount: 0 })).posts
+                    break;
+                case "searchedUser":
+                    this.searchResults = (await this.apiData.getPostsByUser({ userId: filter.value, amount: 0 })).posts
+                    break;
+            }
+        } catch (e) {
+            this.searchResults = null
         }
     }
 
