@@ -34,6 +34,7 @@ export default class TagPill {
 
         this.tagEl = turnTemplateIntoNode(TagPill.htmlString)
         this.fillDynamicContent()
+        parentNode.appendChild(document.createTextNode(" "))
         parentNode.appendChild(this.tagEl)
     }
 }
