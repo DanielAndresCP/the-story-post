@@ -38,6 +38,8 @@ export default class ImageData {
      * @returns {string}
      */
     processStringForSeed(string) {
-        return string.toLocaleLowerCase().trim().replaceAll(" ", "-")
+        // This makes the string be lowercase, with only alphanumeric characters and hyphens instead of spaces
+        const nonAlphaNumericRegex = /[\W_]/g
+        return string.toLocaleLowerCase().trim().replaceAll(" ", "-").replaceAll(nonAlphaNumericRegex,"")
     }
 }
